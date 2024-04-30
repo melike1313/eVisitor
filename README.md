@@ -12,3 +12,10 @@ While developing the eVisitor application, I used javascript, css and html.
 I used node.js and express.js frameworks in the backend part.
 I chose mysql as the database.
 
+
+## eVisitor App
+Here, when the visitor writes her full name and message and presses the send button, the messages are saved with the current date in the Visitor Messages field below.
+
+<img width="1724" alt="evisitor1img" src="https://github.com/melike1313/eVisitor/assets/115094413/719f4db1-bd11-4925-8944-40e26e24edb1">
+
+
