@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   if (localStorage.getItem('visitorMessages')) {
     const storedMessages = JSON.parse(localStorage.getItem('visitorMessages'));
-    // Düzgün sırayla mesajları ekle (en yeni en alta gelecek)
+    // En yeni message en üstte olacak şekilde ekledim
     storedMessages.forEach(message => {
       addMessageToUI(message.fullName, message.message, new Date(message.date), message.id);
     });
@@ -56,10 +56,10 @@ document.addEventListener('DOMContentLoaded', function () {
     listItem.appendChild(messageText);
     listItem.appendChild(deleteButton);
   
-    // En üstteki elemanı alalım
+
     const firstItem = visitorList.firstChild;
   
-    // Eğer en üstteki eleman varsa, yeni elemanı onun üstüne yerleştirelim, yoksa listenin sonuna ekleyelim
+    // Eğer en üstteki eleman varsa, yeni elemanı onun üstüne yerleştirdim, yoksa listenin sonuna ekledim
     if (firstItem) {
       visitorList.insertBefore(listItem, firstItem);
     } else {
@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', function () {
     .then(response => response.json())
     .then(data => {
       console.log('Message deleted from database:', data);
-      // Silinen mesajın yerel depolamadan da kaldırılması
+      // Silinen mesajı yerel depolamadan da kaldırıldım
       const storedMessages = JSON.parse(localStorage.getItem('visitorMessages')) || [];
       const updatedMessages = storedMessages.filter(message => message.id !== messageId);
       localStorage.setItem('visitorMessages', JSON.stringify(updatedMessages));
@@ -129,7 +129,7 @@ function updateMessage(messageId, newMessage) {
   .then(response => response.json())
   .then(data => {
     console.log('Message updated in database:', data);
-    // Güncellenmiş mesajın yerel depolamada da güncellenmesi
+    // Güncellenmiş mesajı yerel depolamada da güncelledim
     const storedMessages = JSON.parse(localStorage.getItem('visitorMessages')) || [];
     const updatedMessages = storedMessages.map(message => {
       if (message.id === messageId) {
