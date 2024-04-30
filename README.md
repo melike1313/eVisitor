@@ -22,5 +22,20 @@ When a new visitor adds a message, we can follow it from the console as follows:
 
 <img width="1724" alt="evisitor3img" src="https://github.com/melike1313/eVisitor/assets/115094413/94907e85-c146-44b2-b835-ad7478188f5f">
 
+For example, when the message of the visitor whose full name is Will is deleted, we can follow it from the console like this:(
+This feature was not specified in the case, I wanted to add such a feature.)
+
+<img width="1724" alt="evisitor4img" src="https://github.com/melike1313/eVisitor/assets/115094413/ddf02331-ea08-45d7-80e1-e986aaaa9b38">
+
+In addition, after the data is deleted, when the page is refreshed, that data will not appear in the interface. But other data, namely visitor messages, remain as they were added.
+
+<img width="1724" alt="evisitor5img" src="https://github.com/melike1313/eVisitor/assets/115094413/55b840e8-e005-493f-83e0-37128eb0846d">
+
+
+In this way, all visitors I have added so far can be seen in the database, along with their messages and the time they were added. All data has been added to the database
+
+<img width="1332" alt="evisitor6img" src="https://github.com/melike1313/eVisitor/assets/115094413/fb9daae2-bb30-411b-96d2-a7809fbdd1c6">
+
+
 
 
