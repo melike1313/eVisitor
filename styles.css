@@ -1,4 +1,4 @@
-/* Arka plan resmi */
+/*body */
 body {
   background-image: url('images/museum.jpg');
   background-size: 100% 100%;
@@ -10,7 +10,7 @@ body {
   padding: 0;
 }
 
-/* Ana başlık */
+/* Başlık */
 h2 {
   text-align: center;
   color: #422b02;
@@ -23,7 +23,7 @@ h1 {
   padding-top: 50px;
 }
 
-/* Form alanları için stil */
+/* Form Stili */
 form {
   max-width: 600px;
   margin: 20px auto;
@@ -74,7 +74,7 @@ button[type="submit"]:hover {
   background-color: #c9b592;
 }
 
-/* Ziyaretçi mesajları için stil */
+/* Ziyaretçi Mesajları Stili */
 #visitorList {
   list-style: none;
   padding: 0;
@@ -113,7 +113,7 @@ li {
 
 .delete-button:hover {
   background-color: #c9b592;
-  /* Hover durumunda arka plan rengi */
+
 
   .edit-button {
     display: inline-block;
