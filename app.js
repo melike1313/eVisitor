@@ -1,10 +1,10 @@
 const express = require('express');
 const mysql = require('mysql');
 const cors = require('cors');
-var favicon = require('serve-favicon');
+
 const bodyParser = require('body-parser');
 
-app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
