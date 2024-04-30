@@ -106,39 +106,4 @@ document.addEventListener('DOMContentLoaded', function () {
       .then(data => console.log('Message added to database:', data))
       .catch(error => console.error('Error adding message to database:', error));
   }
-
-
-  const updateButton = document.createElement('button');
-updateButton.textContent = 'Update';
-updateButton.classList.add('update-button');
-updateButton.addEventListener('click', function() {
-  const newMessage = prompt('Enter the new message:');
-  if (newMessage) {
-    updateMessage(messageId, newMessage);
-  }
-});
-
-function updateMessage(messageId, newMessage) {
-  fetch('http://localhost:5501/updateMessage', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ messageId, newMessage }),
-  })
-  .then(response => response.json())
-  .then(data => {
-    console.log('Message updated in database:', data);
-    // Güncellenmiş mesajı yerel depolamada da güncelledim
-    const storedMessages = JSON.parse(localStorage.getItem('visitorMessages')) || [];
-    const updatedMessages = storedMessages.map(message => {
-      if (message.id === messageId) {
-        return { ...message, message: newMessage, updatedAt: new Date().toISOString() };
-      }
-      return message;
-    });
-    localStorage.setItem('visitorMessages', JSON.stringify(updatedMessages));
-  })
-  .catch(error => console.error('Error updating message in database:', error));
-}
 });
