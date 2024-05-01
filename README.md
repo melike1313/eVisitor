@@ -36,6 +36,7 @@ In addition, after the data is deleted, when the page is refreshed, that data wi
 
 
 In this way, all visitors I have added so far can be seen in the database, along with their messages and the time they were added. All data has been added to the database
+Each visitor has a unique ID.
 
 <img width="1332" alt="evisitor6img" src="https://github.com/melike1313/eVisitor/assets/115094413/fb9daae2-bb30-411b-96d2-a7809fbdd1c6">
 
