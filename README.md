@@ -35,7 +35,7 @@ In addition, after the data is deleted, when the page is refreshed, that data wi
 <img width="1724" alt="evisitor5img" src="https://github.com/melike1313/eVisitor/assets/115094413/55b840e8-e005-493f-83e0-37128eb0846d">
 
 
-In this way, all visitors I have added so far can be seen in the database, along with their messages and the time they were added. All data has been added to the database
+In this way, all visitors I have added so far can be seen in the database, along with their messages and the time they were added. All data has been added to the database.
 Each visitor has a unique ID.
 
 <img width="1332" alt="evisitor6img" src="https://github.com/melike1313/eVisitor/assets/115094413/fb9daae2-bb30-411b-96d2-a7809fbdd1c6">
