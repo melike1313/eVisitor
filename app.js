@@ -1,8 +1,10 @@
 const express = require('express');
 const mysql = require('mysql');
 const cors = require('cors');
+var favicon = require('serve-favicon');
 const bodyParser = require('body-parser');
 
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
@@ -41,28 +43,7 @@ app.post('/deleteMessage', (req, res) => {
       return res.status(500).send('Error deleting message from database');
     }
     res.status(200).send({ status: 'Message deleted' });
-
-    // Silinen mesajı localStorage'dan da kaldırıldım
-    const storedMessages = JSON.parse(localStorage.getItem('visitorMessages')) || [];
-    const updatedMessages = storedMessages.filter(message => message.id !== messageId);
-    localStorage.setItem('visitorMessages', JSON.stringify(updatedMessages));
   });
-});
-app.put('/messages/:id', (req, res) => {
-  // ID'ye göre mesajı buldum
-  const message = messages.find(message => message.id === req.params.id);
-
-  if (message) {
-    // Mesajı güncelledim 
-    message.text = req.body.text;
-
-    // Güncellenmiş mesajı veritabanına kaydettim
-
-
-    res.send(message);
-  } else {
-    res.status(404).send();
-  }
 });
 
 app.listen(5501, () => {

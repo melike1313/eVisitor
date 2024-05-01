@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   if (localStorage.getItem('visitorMessages')) {
     const storedMessages = JSON.parse(localStorage.getItem('visitorMessages'));
-    // En yeni mesajları en üstte gösterecek şekilde
+    // Düzgün sırayla mesajları ekle (en yeni en alta gelecek)
     storedMessages.forEach(message => {
       addMessageToUI(message.fullName, message.message, new Date(message.date), message.id);
     });
@@ -42,32 +42,32 @@ document.addEventListener('DOMContentLoaded', function () {
   function addMessageToUI(fullname, message, date, messageId) {
     const listItem = document.createElement('li');
     listItem.setAttribute('data-id', messageId);
-
+  
     const messageText = document.createTextNode(`${fullname}: ${message} (${formatDate(date)})`);
-
+  
     const deleteButton = document.createElement('button');
     deleteButton.textContent = 'Delete';
     deleteButton.classList.add('delete-button');
-    deleteButton.addEventListener('click', function () {
+    deleteButton.addEventListener('click', function() {
       deleteMessage(messageId);
       listItem.remove();
     });
-
+  
     listItem.appendChild(messageText);
     listItem.appendChild(deleteButton);
-
-   
+  
+    // En üstteki elemanı alalım
     const firstItem = visitorList.firstChild;
-
-
+  
+    // Eğer en üstteki eleman varsa, yeni elemanı onun üstüne yerleştirelim, yoksa listenin sonuna ekleyelim
     if (firstItem) {
       visitorList.insertBefore(listItem, firstItem);
     } else {
       visitorList.appendChild(listItem);
     }
   }
-
-
+  
+  
 
   function deleteMessage(messageId) {
     fetch('http://localhost:5501/deleteMessage', {
@@ -77,17 +77,17 @@ document.addEventListener('DOMContentLoaded', function () {
       },
       body: JSON.stringify({ messageId }),
     })
-      .then(response => response.json())
-      .then(data => {
-        console.log('Message deleted from database:', data);
-        // Silinen mesajın yerel depolamadan da kaldırdım
-        const storedMessages = JSON.parse(localStorage.getItem('visitorMessages')) || [];
-        const updatedMessages = storedMessages.filter(message => message.id !== messageId);
-        localStorage.setItem('visitorMessages', JSON.stringify(updatedMessages));
-      })
-      .catch(error => console.error('Error deleting message from database:', error));
+    .then(response => response.json())
+    .then(data => {
+      console.log('Message deleted from database:', data);
+      // Silinen mesajın yerel depolamadan da kaldırılması
+      const storedMessages = JSON.parse(localStorage.getItem('visitorMessages')) || [];
+      const updatedMessages = storedMessages.filter(message => message.id !== messageId);
+      localStorage.setItem('visitorMessages', JSON.stringify(updatedMessages));
+    })
+    .catch(error => console.error('Error deleting message from database:', error));
   }
-
+  
 
   function formatDate(date) {
     const options = { year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' };
@@ -109,41 +109,36 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
   const updateButton = document.createElement('button');
-  updateButton.textContent = 'Update';
-  updateButton.classList.add('update-button');
-  updateButton.addEventListener('click', function () {
-    const newMessage = prompt('Enter the new message:');
-    if (newMessage) {
-      updateMessage(messageId, newMessage);
-    }
-  });
-
-  function updateMessage(messageId, newMessage) {
-    fetch('http://localhost:5501/updateMessage', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ messageId, newMessage }),
-    })
-      .then(response => response.json())
-      .then(data => {
-        console.log('Message updated in database:', data);
-        // Güncellenmiş mesajı yerel depolamadan da güncelledim
-        const storedMessages = JSON.parse(localStorage.getItem('visitorMessages')) || [];
-        const updatedMessages = storedMessages.map(message => {
-          if (message.id === messageId) {
-            return { ...message, message: newMessage, updatedAt: new Date().toISOString() };
-          }
-          return message;
-        });
-        localStorage.setItem('visitorMessages', JSON.stringify(updatedMessages));
-        // Güncellenmiş mesajı arayüzden de güncelle
-        const listItem = document.querySelector(`li[data-id="${messageId}"]`);
-        const messageText = listItem.firstChild;
-        messageText.textContent = `${messageText.textContent.split(': ')[0]}: ${newMessage} (${formatDate(new Date())})`;
-      })
-      .catch(error => console.error('Error updating message in database:', error));
+updateButton.textContent = 'Update';
+updateButton.classList.add('update-button');
+updateButton.addEventListener('click', function() {
+  const newMessage = prompt('Enter the new message:');
+  if (newMessage) {
+    updateMessage(messageId, newMessage);
   }
+});
 
+function updateMessage(messageId, newMessage) {
+  fetch('http://localhost:5501/updateMessage', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ messageId, newMessage }),
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log('Message updated in database:', data);
+    // Güncellenmiş mesajın yerel depolamada da güncellenmesi
+    const storedMessages = JSON.parse(localStorage.getItem('visitorMessages')) || [];
+    const updatedMessages = storedMessages.map(message => {
+      if (message.id === messageId) {
+        return { ...message, message: newMessage, updatedAt: new Date().toISOString() };
+      }
+      return message;
+    });
+    localStorage.setItem('visitorMessages', JSON.stringify(updatedMessages));
+  })
+  .catch(error => console.error('Error updating message in database:', error));
+}
 });
