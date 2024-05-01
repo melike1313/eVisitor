@@ -1,0 +1,132 @@
+/* Arka plan resmi */
+body {
+  background-image: url('images/museum.jpg');
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Ana başlık */
+h2 {
+  text-align: center;
+  color: #422b02;
+  padding-top: 50px;
+}
+
+h1 {
+  text-align: center;
+  color: #fcedd6;
+  padding-top: 50px;
+}
+
+/* Form alanları için stil */
+form {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: rgba(201, 181, 146, 0.5);
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input[type="text"],
+textarea {
+  width: calc(100% - 20px);
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #472a05;
+  border-radius: 5px;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+  border: 2px solid #422b02;
+  ;
+  /* Tıklanıldığında çerçeve rengi */
+  outline: none;
+  /* Varsayılan odak çerçevesini kaldırır */
+}
+
+
+button[type="submit"] {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #393006;
+  color: #f4e8e8;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #c9b592;
+}
+
+/* Ziyaretçi mesajları için stil */
+#visitorList {
+  list-style: none;
+  padding: 0;
+  margin: 20px auto;
+  max-width: 600px;
+}
+
+#visitorList li {
+  background-color: #c9b592;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(71, 23, 217, 0.1);
+}
+
+#visitorList li:last-child {
+  margin-bottom: 0;
+}
+
+
+li {
+  position: relative;
+}
+
+.delete-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #3e2105;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.delete-button:hover {
+  background-color: #c9b592;
+  /* Hover durumunda arka plan rengi */
+
+  .edit-button {
+    display: inline-block;
+    margin-left: 10px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #3e2105;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  .edit-button:hover {
+    background-color: #5a2d0c;
+  }
+}
