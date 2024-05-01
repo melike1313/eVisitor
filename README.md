@@ -1,8 +1,11 @@
+                                                                                                                    
+
+
 # eVisitor
 
 eVisitor provides all requests given in the web application case
 
-
+eVisitorVideo:  https://youtu.be/DiHEoUrKpiQ      
 ## About The "eVisitor "
 
 The eVisitor web application covers every task in the case. In addition to these tasks, I added a field called "deletedAt" to the database and showed that comments can be deleted via the interface. I also designed a museum-themed, responsive and simple-to-use interface that anyone can use.
